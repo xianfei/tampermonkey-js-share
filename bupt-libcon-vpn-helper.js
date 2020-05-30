@@ -1,6 +1,5 @@
 // ==UserScript==
 // @name        自动跳转bupt-libcon-vpn
-// @namespace   http://blog.icespite.top
 // @include     *://*.cnki.*/*
 // @include     *://wenku.baidu.com/*
 // @grant       none
