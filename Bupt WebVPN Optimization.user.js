@@ -4,6 +4,7 @@
 // @version      0.1
 // @description  for automatically input uid and pwd（请在浏览器中取消对webvpn.bupt.edu.cn的密码自动填充）
 // @author       Xianfei
+// @license      GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
 // @match        https://webvpn.bupt.edu.cn/*
 // @grant        none
 // ==/UserScript==
