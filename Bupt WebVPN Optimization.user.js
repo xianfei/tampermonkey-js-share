@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bupt WebVPN Optimization
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  for automatically input uid and pwd（请在浏览器中取消对webvpn.bupt.edu.cn的密码自动填充）
 // @author       Xianfei
 // @license      GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
@@ -20,6 +20,10 @@ var authPwd = '替换为你的信息门户密码';
 // 你的WebVPN密码（连接校园网密码）
 var webVpnID = jwglID;
 var webVpnPwd = '替换为你的校园网密码';
+
+// 你的大创平台信息
+var winID = jwglID;
+var winPwd = '替换为你的大创网密码';
 
 // 自动填充延时(或频率) 如果与浏览器自动填充有冲突请更改此项
 var fillDelay = 100;
@@ -72,6 +76,21 @@ var loopFill = false;
             setTimeout(() => {
                 document.getElementById('username').value = authID
                 document.getElementById('password').value = authPwd
+            }, fillDelay);
+        }
+    }
+    
+    // for win login
+    if (document.title.indexOf("大学生创新创业") != -1) {
+        if (loopFill) {
+            setInterval(() => {
+               document.getElementsByName("user")[0].value = winID
+                document.getElementsByName("pass")[0].value = winPwd
+            }, fillDelay);
+        } else {
+            setTimeout(() => {
+               document.getElementsByName("user")[0].value = winID
+                document.getElementsByName("pass")[0].value = winPwd
             }, fillDelay);
         }
     }
@@ -159,6 +178,9 @@ var loopFill = false;
         }
         var jwUrl = encrypUrl("http", "jwgl.bupt.edu.cn/jsxsd");
         $('#group-1').append("<div onclick=\"window.location.href='" + jwUrl + "'\"  class=\"layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3\" style=\"padding: 10px 10px 10px 0px;\">\n                                    <div class=\"vpn-content-block-panel\"\n                                        data-url=" + jwUrl + "\n                                        data-search=\"新教务系统_my.bupt.edu.cn\"\n                                        data-type=\"vpn\"\n                                        title=\"新教务系统\"\n                                    >\n                                        <div class=\"vpn-content-block-panel__image\">\n                                            \n                                                <div>\n                                                    <span>教</span>\n                                                </div>\n                                            \n                                        </div>\n                                        \n                                        <div class=\"vpn-content-block-panel__content\">\n                                            <p>新教务系统</p>\n                                            <p class=\"vpn-content-block-panel__url\">jwgl.bupt.edu.cn/jsxsd</p>\n                                        </div>\n                                        \n                                    </div>\n                                </div>")
+        var winUrl = encrypUrl("https", "win.bupt.edu.cn/");
+        $('#group-1').append("<div onclick=\"window.location.href='" + winUrl + "'\"  class=\"layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3\" style=\"padding: 10px 10px 10px 0px;\">\n                                    <div class=\"vpn-content-block-panel\"\n                                        data-url=" + winUrl + "\n                                        data-search=\"win.bupt.edu.cn\"\n                                        data-type=\"vpn\"\n                                        title=\"大创网\"\n                                    >\n                                        <div class=\"vpn-content-block-panel__image\">\n                                            \n                                                <div>\n                                                    <span>大</span>\n                                                </div>\n                                            \n                                        </div>\n                                        \n                                        <div class=\"vpn-content-block-panel__content\">\n                                            <p>大创网</p>\n                                            <p class=\"vpn-content-block-panel__url\">win.bupt.edu.cn</p>\n                                        </div>\n                                        \n                                    </div>\n                                </div>")
+
     }
 
 })();
